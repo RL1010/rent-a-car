@@ -31,42 +31,4 @@ export class CarService {
     async removeCar(id: number, user: User): Promise<Car>{
         return await this.carRepository.removeCar(id, user)
     }
-
-
-
-
-
-
-    // constructor(@InjectRepository(Car) private repository : Repository <Car>){}
-
-    // create( createCar: CreateCarDto){
-    //     const car = this.repository.create(createCar)
-    //     return this.repository.save(car)
-    // }
-
-    // findOne(id: number){
-    //     return this.repository.findOne(id)
-    // }
-
-    // find(attrs: Partial<Car>){
-    //     return this.repository.find(attrs)
-    // }
-
-    // async update(id: number, attrs: Partial<Car>){
-    //     const car = await this.findOne(id)
-    //     if(!car){
-    //         throw new NotFoundException('Car not found!')
-    //     }
-    //     Object.assign(car, attrs)
-    //     return this.repository.save(car)
-    // }
-
-    // async remove(id: number){
-    //     const car = await this.findOne(id)
-    //     if(!car){
-    //         throw new NotFoundException('Car not found!')
-    //     }
-    //     return this.repository.remove(car)
-    // }
-
 }

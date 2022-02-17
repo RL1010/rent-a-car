@@ -10,7 +10,6 @@ export class Reservation extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;
 
-    //  @Type((startDate) => moment(startDate).format('DD/MM/YY'))
     @Type(() => Date)
     @Column('date', { nullable: true }) 
     startDate: Date;
@@ -22,7 +21,6 @@ export class Reservation extends BaseEntity{
     @ManyToOne(() => Car, car => car.reservations)
     car: Car
 
-    
     @ManyToOne(() => Report, report => report.reservation)
     report: Report;
 
