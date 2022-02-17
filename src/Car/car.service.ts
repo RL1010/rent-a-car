@@ -1,12 +1,12 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/Entities/UserEntity';
-import { carRepository, CarRepositoryInterface } from 'src/Interfaces/RepositoryInterface/CarRepositoryInterface';
+import { User } from 'src/Entities/user.entity';
+import { carRepository, CarRepositoryInterface } from 'src/Interfaces/RepositoryInterface/carRepository.interface';
 import { CarRespository } from 'src/Repositories/CarRepository';
 import { Repository } from 'typeorm';
-import { Car } from '../Entities/CarEntity';
-import { CreateCarDto } from './dtos/CreateCarDto';
-import { UpdateCarDto } from './dtos/UpdateCarDto';
+import { Car } from '../Entities/car.entity';
+import { CreateCarDto } from './dtos/createCar.dto';
+import { UpdateCarDto } from './dtos/updateCar.dto';
 
 @Injectable()
 export class CarService {

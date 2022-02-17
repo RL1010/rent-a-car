@@ -11,8 +11,6 @@ export class ReservationDto{
     @Expose()
     endDate: Date;
 
-
-
     @Transform(({obj}) => obj.car.id)
     @Expose()
     carId: number;

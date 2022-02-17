@@ -1,10 +1,10 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/Entities/UserEntity';
+import { User } from 'src/Entities/user.entity';
 import { Repository, UpdateResult } from 'typeorm';
-import { createReservationDto } from './dtos/CreateReservationDto';
-import{ Reservation } from '../Entities/ReservationEntity'
-import { Car } from 'src/Entities/CarEntity';
+import { createReservationDto } from './dtos/createReservation.dto';
+import{ Reservation } from '../Entities/reservation.entity'
+import { Car } from 'src/Entities/car.entity';
 
 @Injectable()
 export class ReservationService {
@@ -42,17 +42,17 @@ export class ReservationService {
             return this.reservationRepo.save(reservation)
     }
 
-    async update(id: number, attrs: Partial < Reservation > , carId: number): Promise < UpdateResult > {
-            const res_id = await this.reservationRepo.findOne(id)
-            if (!res_id) {
+    async update(id: number, attrs: Partial <Reservation> , carId: number, user: User): Promise < UpdateResult > {
+            const reservation = await this.reservationRepo.findOne({where: {id, userId: user.id}})
+            if (!reservation) {
             throw new NotFoundException(`The reservation does not exists`)
             }
-            const car_id = await this.carRepo.findOne(carId)
+            const car = await this.carRepo.findOne({where: {id: carId, userId: user.id}})
         
-            if (!car_id) {
+            if (!car) {
             throw new NotFoundException(`Sorry this car does not exists`)
             }
-            const newRes = await this.reservationRepo.update(res_id.id, {car: car_id})
+            const newRes = await this.reservationRepo.update(reservation.id, {car: car})
             return newRes
     }
 

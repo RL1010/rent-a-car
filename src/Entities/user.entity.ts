@@ -1,8 +1,8 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import * as bcrypt from 'bcrypt'
-import { Reservation } from "src/Entities/ReservationEntity";
-import { Car } from "./CarEntity";
-import { Report } from "./ReportEntity";
+import { Reservation } from "src/Entities/reservation.entity";
+import { Car } from "./car.entity";
+import { Report } from "./report.entity";
 
 @Entity()
 export class User extends BaseEntity{

@@ -1,13 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
-import { createReservationDto } from './dtos/CreateReservationDto';
-import { UpdateReservationDto } from './dtos/UpdateReservationDto';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards, ValidationPipe } from '@nestjs/common';
+import { createReservationDto } from './dtos/createReservation.dto';
+import { UpdateReservationDto } from './dtos/updateReservation.dto';
 import { ReservationService } from './reservation.service';
-import { ReservationDto } from './dtos/ReservationDto';
+import { ReservationDto } from './dtos/reservation.dto';
 import { Serialize } from 'src/Interceptors/serialize.interceptor';
-import { GetUser } from 'src/Auth/GetUserDecorator';
-import { User } from 'src/Entities/UserEntity';
+import { GetUser } from 'src/Auth/getUser.decorator';
+import { User } from 'src/Entities/user.entity';
 import { AuthGuard } from '@nestjs/passport';
-import { Reservation } from 'src/Entities/ReservationEntity';
+import { Reservation } from 'src/Entities/reservation.entity';
 
 @Controller('reservation')
 @UseGuards(AuthGuard())
@@ -17,15 +17,16 @@ constructor(private reservationService: ReservationService){}
     @Post('/create/:id')
     @Serialize(ReservationDto)
     createReservation(@Param('id') id: string, 
-                    @Body() body: createReservationDto,
+                    @Body(ValidationPipe) body: createReservationDto,
                     @GetUser() user: User):Promise<Reservation>{
             return this.reservationService.create(parseInt(id),body, user)
     }
 
     @Patch('/update/:id')
     updateReservation(@Param('id') id: string,
-                      @Body() body: UpdateReservationDto){
-            return this.reservationService.update(parseInt(id), body, body.carId)
+                      @Body(ValidationPipe) body: UpdateReservationDto,
+                      @GetUser() user: User){
+            return this.reservationService.update(parseInt(id), body, body.carId, user)
    }
 
    @Delete('/:id')

@@ -1,9 +1,9 @@
 import { NotFoundException } from "@nestjs/common";
-import { CreateCarDto } from "src/Car/dtos/CreateCarDto";
-import { UpdateCarDto } from "src/Car/dtos/UpdateCarDto";
-import { Car } from "src/Entities/CarEntity";
-import { User } from "src/Entities/UserEntity";
-import { CarRepositoryInterface } from "src/Interfaces/RepositoryInterface/CarRepositoryInterface";
+import { CreateCarDto } from "src/Car/dtos/createCar.dto";
+import { UpdateCarDto } from "src/Car/dtos/updateCar.dto";
+import { Car } from "src/Entities/car.entity";
+import { User } from "src/Entities/user.entity";
+import { CarRepositoryInterface } from "src/Interfaces/RepositoryInterface/carRepository.interface";
 import { AbstractRepository, EntityRepository } from "typeorm";
 
 @EntityRepository(Car)

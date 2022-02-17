@@ -1,7 +1,7 @@
-import { Car } from "src/Entities/CarEntity";
-import { Reservation } from "src/Entities/ReservationEntity";
+import { Car } from "src/Entities/car.entity";
+import { Reservation } from "src/Entities/reservation.entity";
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { User } from "./UserEntity";
+import { User } from "./user.entity";
 
 @Entity()
 export class Report extends BaseEntity{

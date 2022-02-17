@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { report } from 'process';
-import { Car } from 'src/Entities/CarEntity';
-import { createReservationDto } from 'src/Reservation/dtos/CreateReservationDto';
-import { Reservation } from 'src/Entities/ReservationEntity';
+import { Car } from 'src/Entities/car.entity';
+import { createReservationDto } from 'src/Reservation/dtos/createReservation.dto';
+import { Reservation } from 'src/Entities/reservation.entity';
 import { Repository } from 'typeorm';
-import { Report } from '../Entities/ReportEntity';
-import { User } from 'src/Entities/UserEntity';
+import { Report } from '../Entities/report.entity';
+import { User } from 'src/Entities/user.entity';
 
 @Injectable()
 export class ReportService {
@@ -19,6 +19,9 @@ export class ReportService {
         const report = await this.reportRepo.create()
         // const car = await this.carRepo.findOne(id, {relations: ["reservations"]})
         const car = await this.carRepo.findOne({where: {id, userId: user.id}})
+        if(!car){
+            throw new NotFoundException("Car not found")
+        }
         report.car = car
         
         const res = await this.reservationRepo.find({where: {car: id, userId: user.id}})   
@@ -39,17 +42,18 @@ export class ReportService {
         report.totalForMonth = total
         report.reservation = resByMonth
         report.user = user
-        
+            
         return this.reportRepo.save(report)
+        
     }
-    
+       
+    async findAll( user: User) : Promise<Report[]>{
+        return await this.reportRepo.find({where: {userId: user.id}})
+    }
+
     async delete(id: number, user: User): Promise<Report>{
         const report_id = await this.reportRepo.findOne({where: {id, userId: user.id}})
         return this.reportRepo.remove(report_id)
-    }
-    
-    async findAll( user: User) : Promise<Report[]>{
-        return await this.reportRepo.find({where: {userId: user.id}})
     }
 
 

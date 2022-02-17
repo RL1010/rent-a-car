@@ -1,5 +1,5 @@
-import { User } from "src/Entities/UserEntity";
-import { createReservationDto } from "src/Reservation/dtos/CreateReservationDto";
+import { User } from "src/Entities/user.entity";
+import { createReservationDto } from "src/Reservation/dtos/createReservation.dto";
 
 
 

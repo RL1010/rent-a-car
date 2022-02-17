@@ -1,7 +1,7 @@
-import { CreateCarDto } from "src/Car/dtos/CreateCarDto";
-import { UpdateCarDto } from "src/Car/dtos/UpdateCarDto";
-import { Car } from "src/Entities/CarEntity";
-import { User } from "src/Entities/UserEntity";
+import { CreateCarDto } from "src/Car/dtos/createCar.dto";
+import { UpdateCarDto } from "src/Car/dtos/updateCar.dto";
+import { Car } from "src/Entities/car.entity";
+import { User } from "src/Entities/user.entity";
 
 export const carRepository = 'CarRepositoryInterface'
 export interface CarRepositoryInterface {

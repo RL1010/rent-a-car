@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Car } from './Entities/CarEntity';
+import { Car } from './Entities/car.entity';
 import { CarModule } from './Car/car.module';
-import { Report } from './Entities/ReportEntity';
+import { Report } from './Entities/report.entity';
 import { ReportModule } from './Report/report.module';
-import { Reservation } from './Entities/ReservationEntity';
+import { Reservation } from './Entities/reservation.entity';
 import { ReservationModule } from './Reservation/reservation.module';
 import { AuthModule } from './Auth/auth.module';
-import { User } from './Entities/UserEntity';
+import { User } from './Entities/user.entity';
 import { UserRepository } from './Repositories/UserRepostiroy';
 import { CarRespository } from './Repositories/CarRepository';
 
