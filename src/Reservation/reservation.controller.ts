@@ -17,8 +17,8 @@ constructor(private reservationService: ReservationService){}
     @Post('/create/:id')
     @Serialize(ReservationDto)
     createReservation(@Param('id') id: string, 
-                    @Body(ValidationPipe) body: createReservationDto,
-                    @GetUser() user: User):Promise<Reservation>{
+                      @Body(ValidationPipe) body: createReservationDto,
+                      @GetUser() user: User):Promise<Reservation>{
             return this.reservationService.create(parseInt(id),body, user)
     }
 

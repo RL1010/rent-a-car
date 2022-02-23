@@ -1,11 +1,9 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/Entities/user.entity';
 import { carRepository, CarRepositoryInterface } from 'src/Interfaces/RepositoryInterface/carRepository.interface';
-import { CarRespository } from 'src/Repositories/CarRepository';
-import { Repository } from 'typeorm';
 import { Car } from '../Entities/car.entity';
 import { CreateCarDto } from './dtos/createCar.dto';
+import { FilterCarDto } from './dtos/filterCar.dto';
 import { UpdateCarDto } from './dtos/updateCar.dto';
 
 @Injectable()
@@ -19,16 +17,20 @@ export class CarService {
     async findOneCar(id: number, user: User): Promise<Car>{
         return await this.carRepository.findOneCar(id, user)
     }
-    // Duhet mi rrregullu
-    async find(attrs: Partial<Car>, user: User): Promise<Car[]>{
-        return await this.carRepository.find(attrs, user)
+
+    async getAllCars(filterDto: FilterCarDto, user: User): Promise<Car[]>{
+        return await this.carRepository.getAllCars(filterDto, user)
     }
 
+    async getCarswithFilters(filterDto: FilterCarDto, user: User): Promise<Car[]>{
+        return await this.carRepository.getAllCars(filterDto, user)
+    }
+    
     async updateCar(id: number, updateCarDto: UpdateCarDto, user: User): Promise<Car>{
         return await this.carRepository.updateCar(id, updateCarDto, user)
     }
 
-    async removeCar(id: number, user: User): Promise<Car>{
+    async removeCar(id: number, user: User): Promise<void>{
         return await this.carRepository.removeCar(id, user)
     }
 }

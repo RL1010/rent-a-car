@@ -1,8 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { report } from 'process';
 import { Car } from 'src/Entities/car.entity';
-import { createReservationDto } from 'src/Reservation/dtos/createReservation.dto';
 import { Reservation } from 'src/Entities/reservation.entity';
 import { Repository } from 'typeorm';
 import { Report } from '../Entities/report.entity';
@@ -17,7 +15,7 @@ export class ReportService {
     async create(id: number, user: User): Promise<Report> {
 
         const report = await this.reportRepo.create()
-        // const car = await this.carRepo.findOne(id, {relations: ["reservations"]})
+     
         const car = await this.carRepo.findOne({where: {id, userId: user.id}})
         if(!car){
             throw new NotFoundException("Car not found")
@@ -42,9 +40,7 @@ export class ReportService {
         report.totalForMonth = total
         report.reservation = resByMonth
         report.user = user
-            
         return this.reportRepo.save(report)
-        
     }
        
     async findAll( user: User) : Promise<Report[]>{

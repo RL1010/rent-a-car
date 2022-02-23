@@ -1,15 +1,11 @@
 
-import { Inject } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Car } from "src/Entities/car.entity";
 import { Reservation } from "src/Entities/reservation.entity";
 import { User } from "src/Entities/user.entity";
-import { carRepository, CarRepositoryInterface } from "src/Interfaces/RepositoryInterface/carRepository.interface";
 import { ReservationRepositoryInterface } from "src/Interfaces/RepositoryInterface/reservationRepository.interface";
 import { createReservationDto } from "src/Reservation/dtos/createReservation.dto";
 import { AbstractRepository, EntityRepository, Repository } from "typeorm";
-import { CarRespository } from "./CarRepository";
-
 
 @EntityRepository(Reservation)
 export class ReservationRepository extends AbstractRepository<Reservation> implements ReservationRepositoryInterface{

@@ -1,7 +1,7 @@
 import { User } from "src/Entities/user.entity";
 import { Car } from "src/Entities/car.entity";
 import { Report } from "src/Entities/report.entity";
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, OneToMany, BaseEntity } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, BaseEntity } from "typeorm";
 import { Type } from "class-transformer";
 
 @Entity()

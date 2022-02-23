@@ -4,7 +4,6 @@ import { GetUser } from 'src/Auth/getUser.decorator';
 import { Report } from 'src/Entities/report.entity';
 import { User } from 'src/Entities/user.entity';
 import { Serialize } from 'src/Interceptors/serialize.interceptor';
-import { createReservationDto } from 'src/Reservation/dtos/createReservation.dto';
 import { ReservationDto } from 'src/Reservation/dtos/reservation.dto';
 import { ReportService } from './report.service';
 

@@ -8,9 +8,6 @@ import { Reservation } from './Entities/reservation.entity';
 import { ReservationModule } from './Reservation/reservation.module';
 import { AuthModule } from './Auth/auth.module';
 import { User } from './Entities/user.entity';
-import { UserRepository } from './Repositories/UserRepostiroy';
-import { CarRespository } from './Repositories/CarRepository';
-
 
 @Module({
   imports: [TypeOrmModule.forRoot({

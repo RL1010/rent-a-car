@@ -1,17 +1,24 @@
 import { Expose, Transform } from "class-transformer";
 
-export class ReportDto{
 
+export class CarDto{
     @Expose()
     id: number;
 
-    @Transform(({obj}) => obj.reservation.price)
     @Expose()
-    totalForMonth: number;
-    
-    @Transform(({obj}) => obj.car.id)
+    name: string;
+
     @Expose()
-    carId: number;
+    brand: string;
+
+    @Expose()
+    year: number;
+
+    @Expose()
+    company: string;
+
+    @Expose()
+    price: number;
 
     @Transform(({obj}) => obj.user.id)
     @Expose()

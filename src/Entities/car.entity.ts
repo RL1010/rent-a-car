@@ -1,7 +1,7 @@
 
 import { Report } from "src/Entities/report.entity";
 import { Reservation } from "src/Entities/reservation.entity";
-import { AfterInsert, AfterRemove, AfterUpdate, BaseEntity, Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./user.entity";
 
 @Entity()
